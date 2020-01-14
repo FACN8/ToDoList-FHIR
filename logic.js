@@ -28,6 +28,13 @@ var todoFunctions = {
     // returns a new array, it should contain todos with the newTodo added to the end.
     // add an id to the newTodo. You can use the generateId function to create an id.
     // hint: array.concat
+    let NewToo2 =[{
+      id: todoFunctions.generateId(),
+            description: newTodo.description,
+            done: false
+    }]
+    return todos.concat(NewToo2)
+   
   },
   deleteTodo: function(todos, idToDelete) {
     // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
@@ -45,6 +52,9 @@ var todoFunctions = {
     // should leave the input arguement todos unchanged (you can use cloneArrayOfObjects)
     // sortFunction will have same signature as the sort function in array.sort
     // hint: array.slice, array.sort
+  //sort be Done/unDone 
+  
+return sortFunction(todos)
   },
 };
 
