@@ -8,7 +8,7 @@ var todoFunctions = {
   generateId: (function() {
     var idCounter = 0;
 
-    function incrementCounter() {
+    function incrementCounter() {   
       return (idCounter += 1);
     }
 
@@ -20,8 +20,8 @@ var todoFunctions = {
   cloneArrayOfObjects: function(todos) {
     return todos.map(function(todo){
       return JSON.parse(JSON.stringify(todo));
-    });
-  },
+    }); 
+  }, 
   
   addTodo: function(todos, newTodo) {
     // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
@@ -37,11 +37,25 @@ var todoFunctions = {
    
   },
   deleteTodo: function(todos, idToDelete) {
+
+    return todos.filter(function (x){
+        return x["id"]!==idToDelete;
+    });
     // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
     // return a new array, this should not contain any todo with an id of idToDelete
     // hint: array.filter
   },
   markTodo: function(todos, idToMark) {
+    return todos.map(function(curr) {
+      if(curr["id"]==idToMark) 
+        {
+            if (curr["done"]==false)
+                curr["done"]=true;
+            else
+                curr["done"]=false;
+        }
+        return curr;
+    })
     // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
     // in the new todo array, all elements will remain unchanged except the one with id: idToMark
     // this element will have its done value toggled
