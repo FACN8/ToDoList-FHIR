@@ -8,7 +8,7 @@ var todoFunctions = {
   generateId: (function() {
     var idCounter = 0;
 
-    function incrementCounter() {
+    function incrementCounter() {   
       return (idCounter += 1);
     }
 
@@ -30,6 +30,10 @@ var todoFunctions = {
     // hint: array.concat
   },
   deleteTodo: function(todos, idToDelete) {
+
+    return todos.filter(function (x){
+        return x["id"]!==idToDelete;
+    });
     // should leave the input argument todos unchanged (you can use cloneArrayOfObjects)
     // return a new array, this should not contain any todo with an id of idToDelete
     // hint: array.filter
