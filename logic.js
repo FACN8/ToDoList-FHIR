@@ -35,8 +35,8 @@ var todoFunctions = {
     // hint: array.filter
   },
   markTodo: function(todos, idToMark) {
-    return todos.map(function(curr, ind) {
-      if(ind==idToMark) 
+    return todos.map(function(curr) {
+      if(curr["id"]==idToMark) 
         {
             if (curr["done"]==false)
                 curr["done"]=true;
