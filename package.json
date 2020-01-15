@@ -1,0 +1,22 @@
+{
+  "name": "todolist-fhir",
+  "version": "1.0.0",
+  "description": "Prototype: https://facn8.github.io/ToDoList-FHIR/",
+  "main": "dom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACN8/ToDoList-FHIR.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACN8/ToDoList-FHIR/issues"
+  },
+  "homepage": "https://github.com/FACN8/ToDoList-FHIR#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
