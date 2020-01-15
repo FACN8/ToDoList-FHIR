@@ -70,6 +70,21 @@ var todoFunctions = {
   
 return sortFunction(todos)
   },
+  sortByFalse: function (arr){
+    // sort by false
+   return arr.sort((a, b) => {
+    if (a.done < b.done) return -1
+    return a.done > b.done ? 1 : 0
+  })
+  },
+  
+  sortByTrue: function (arr){
+    // sort by true
+   return arr.sort((a, b) => {
+    if (a.done > b.done) return -1
+    return a.done < b.done ? 1 : 0
+  })
+  },
 };
 
 
@@ -80,3 +95,5 @@ return sortFunction(todos)
 if (typeof module !== 'undefined') {
   module.exports = todoFunctions;
 }
+
+
