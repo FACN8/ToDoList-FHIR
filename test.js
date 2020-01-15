@@ -81,12 +81,7 @@ describe('sortTodosByTrueAnFalse', function() {
       }
     ];
 
-    var updatedTodos = logic.sortTodos(todos, function(arr){
-     return arr.sort((a, b) => {
-      if (a.done > b.done) return -1
-      return a.done < b.done ? 1 : 0
-    })
-      })
+    var updatedTodos = logic.sortTodos(todos,arr=> logic.sortByTrue(arr))
 
     result = [
       {
@@ -120,12 +115,7 @@ describe('sortTodosByTrueAnFalse', function() {
       }
     ];
 
-    var updatedTodos = logic.sortTodos(todos, function(arr){
-     return arr.sort((a, b) => {
-      if (a.done < b.done) return -1
-      return a.done > b.done ? 1 : 0
-    })
-      })
+    var updatedTodos = logic.sortTodos(todos,arr=> logic.sortByFalse(arr))
 
     result = [
       {
