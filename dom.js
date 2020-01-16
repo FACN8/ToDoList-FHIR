@@ -11,12 +11,16 @@
         var spanNode = document.createElement('span');
         var checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
-
-        if (todo.done)
-            checkbox.checked = true;
-
+        function checkDone(){
+            if (todo.done){
+                checkbox.checked = true;
+                spanNode.setAttribute('style','text-decoration: line-through');
+            }else{ spanNode.setAttribute('style','');}
+        }
+        checkDone();
         checkbox.addEventListener('click', function(event) {
             todoFunctions.markTodo(state, todo.id);
+            checkDone();
         });
 
         spanNode.textContent = todo.description;
@@ -40,6 +44,7 @@
         return todoNode;
     };
 
+    
     // bind create todo form
     if (addTodoForm) {
         addTodoForm.addEventListener('submit', function(event) {
