@@ -44,12 +44,13 @@
     if (addTodoForm) {
         addTodoForm.addEventListener('submit', function(event) {
             event.preventDefault();
+            if (event.target.description.value === '')
+                return;
             var newState = todoFunctions.addTodo(state, {
                 description: event.target.description.value
             });
             update(newState);
         });
-
     }
 
     document.getElementById("filter").addEventListener('click', function(event) {
