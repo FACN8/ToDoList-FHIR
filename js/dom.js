@@ -1,11 +1,11 @@
-(function() {
+(function () {
     var container = document.getElementById('todo-container');
     var addTodoForm = document.getElementById('add-todo');
 
 
     var state = [];
 
-    var createTodoNode = function(todo) {
+    var createTodoNode = function (todo) {
         var todoNode = document.createElement('li');
         todoNode.setAttribute('style', 'list-style-type:none;');
         var spanNode = document.createElement('span');
@@ -15,7 +15,7 @@
         if (todo.done)
             checkbox.checked = true;
 
-        checkbox.addEventListener('click', function(event) {
+        checkbox.addEventListener('click', function (event) {
             todoFunctions.markTodo(state, todo.id);
         });
 
@@ -24,11 +24,10 @@
         todoNode.appendChild(checkbox);
         todoNode.appendChild(spanNode);
 
-        // this adds the delete button
         var deleteButtonNode = document.createElement('button');
         deleteButtonNode.textContent = "Delete";
 
-        deleteButtonNode.addEventListener('click', function(event) {
+        deleteButtonNode.addEventListener('click', function (event) {
             var newState = todoFunctions.deleteTodo(state, todo.id);
             update(newState);
         });
@@ -40,9 +39,8 @@
         return todoNode;
     };
 
-    // bind create todo form
     if (addTodoForm) {
-        addTodoForm.addEventListener('submit', function(event) {
+        addTodoForm.addEventListener('submit', function (event) {
             event.preventDefault();
             if (event.target.description.value === '')
                 return;
@@ -50,10 +48,11 @@
                 description: event.target.description.value
             });
             update(newState);
+            event.target.description.value = '';
         });
     }
 
-    document.getElementById("filter").addEventListener('click', function(event) {
+    document.getElementById("filter").addEventListener('click', function (event) {
         filterMode = document.getElementById("filter").textContent;
         console.log(filterMode)
         if (filterMode.includes("UnDone")) {
@@ -68,23 +67,57 @@
         update(newState);
     });
 
-    // you should not need to change this function
-    var update = function(newState) {
+    var update = function (newState) {
         state = newState;
         renderState(state);
     };
 
-    // you do not need to change this function
-    var renderState = function(state) {
+    var renderState = function (state) {
         var todoListNode = document.createElement('ul');
 
-        state.forEach(function(todo) {
+        state.forEach(function (todo) {
             todoListNode.appendChild(createTodoNode(todo));
         });
 
-        // you may want to add a class for css
         container.replaceChild(todoListNode, container.firstChild);
     };
+
+    var dayanddate = function () {
+        var str = ""
+        const date = new Date();
+        switch (date.getDay()) {
+            case 6:
+                str += "Saturday";
+                break;
+            case 0:
+                str += "Sunday";
+                break;
+            case 1:
+                str += "Monday";
+                break;
+            case 2:
+                str += "Tuesday";
+                break;
+            case 3:
+                str += "Wednesday";
+                break;
+            case 4:
+                str += "Thursday";
+                break;
+            case 5:
+                str += "Friday";
+                break;
+        }
+        str = str + " " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+        var divnode = document.createElement("div");
+        var spannode = document.createElement("span");
+        spannode.textContent = str;
+        divnode.appendChild(spannode);
+        divnode.setAttribute('id', 'date-container');
+        document.getElementById("main-container").insertBefore(divnode, document.getElementById("main-container").firstChild);
+    }
+
+    dayanddate();
 
     if (container) renderState(state);
 })();
