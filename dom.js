@@ -55,7 +55,6 @@
 
     document.getElementById("filter").addEventListener('click', function(event) {
         filterMode = document.getElementById("filter").textContent;
-        console.log(filterMode)
         if (filterMode.includes("UnDone")) {
             var newState = todoFunctions.sortTodos(state, arr => todoFunctions.sortByFalse(arr))
             console.log(newState)
