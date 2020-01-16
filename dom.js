@@ -2,13 +2,18 @@
     var container = document.getElementById('todo-container');
     var addTodoForm = document.getElementById('add-todo');
 
+
     var state = [];
 
     var createTodoNode = function(todo) {
         var todoNode = document.createElement('li');
+        todoNode.setAttribute('style', 'list-style-type:none;');
         var spanNode = document.createElement('span');
         var checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
+
+        if (todo.done)
+            checkbox.checked = true;
 
         checkbox.addEventListener('click', function(event) {
             todoFunctions.markTodo(state, todo.id);
@@ -30,9 +35,7 @@
 
         todoNode.appendChild(deleteButtonNode);
 
-        // add markTodo button
-
-        // add classes for css
+        console.log(state);
 
         return todoNode;
     };
@@ -40,20 +43,29 @@
     // bind create todo form
     if (addTodoForm) {
         addTodoForm.addEventListener('submit', function(event) {
-            // https://developer.mozilla.org/en-US/docs/Web/Events/submit
-            // what does event.preventDefault do?
-            // what is inside event.target?
-
             event.preventDefault();
-
-            // hint: todoFunctions.addTodo
             var newState = todoFunctions.addTodo(state, {
                 description: event.target.description.value
             });
-
             update(newState);
         });
+
     }
+
+    document.getElementById("filter").addEventListener('click', function(event) {
+        filterMode = document.getElementById("filter").textContent;
+        console.log(filterMode)
+        if (filterMode.includes("UnDone")) {
+            var newState = todoFunctions.sortTodos(state, arr => todoFunctions.sortByFalse(arr))
+            console.log(newState)
+            document.getElementById("filter").textContent = "Filter By Done"
+        } else {
+            var newState = todoFunctions.sortTodos(state, arr => todoFunctions.sortByTrue(arr))
+            console.log(newState)
+            document.getElementById("filter").textContent = "Filter By UnDone"
+        }
+        update(newState);
+    });
 
     // you should not need to change this function
     var update = function(newState) {
